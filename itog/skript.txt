@@ -1,0 +1,35 @@
+create table type_materials(
+id_type_material int primary key,
+type varchar(100),
+kol_packege int,
+unit varchar(10)
+);
+create table materials(
+id_materials int primary key,
+name_material varchar(100),
+count_materials int,
+minimum_balance int,
+price int,
+id_type_material int references type_materials(id_type_material)
+);
+create table products(
+id_product int primary key,
+name_product varchar(100),
+articul int,
+image varchar(100),
+min_price int,
+type_product varchar(100)
+);
+create table product_materials(
+id_materials int,
+id_product int,
+count_product_materials int,
+CONSTRAINT product_materials_pk PRIMARY KEY (id_materials, id_product),
+CONSTRAINT product_materials_materials_fk FOREIGN KEY (id_materials) REFERENCES materials(id_materials),
+CONSTRAINT product_materials_products_fk FOREIGN KEY (id_product) REFERENCES products(id_product)
+);
+create table productions(
+id_production int primary key,
+workshop_number int,
+count_people int
+);
